@@ -1,0 +1,23 @@
+:root {
+  --blue: #0079ff;
+  --gray: #697c9a;
+  --blue-2: #4b6a9b;
+  --light-black: #2b3442;
+  --black: #141d2f;
+  --white-alt: #fefefe;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
