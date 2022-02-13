@@ -1,42 +1,107 @@
 import {getGithubUser} from './data.js'
 
-const userData = {
-  login: 'octocat',
-  id: 583231,
-  node_id: 'MDQ6VXNlcjU4MzIzMQ==',
-  avatar_url: 'https://avatars.githubusercontent.com/u/583231?v=4',
-  gravatar_id: '',
-  url: 'https://api.github.com/users/octocat',
-  html_url: 'https://github.com/octocat',
-  followers_url: 'https://api.github.com/users/octocat/followers',
-  following_url: 'https://api.github.com/users/octocat/following{/other_user}',
-  gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-  starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-  subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
-  organizations_url: 'https://api.github.com/users/octocat/orgs',
-  repos_url: 'https://api.github.com/users/octocat/repos',
-  events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-  received_events_url: 'https://api.github.com/users/octocat/received_events',
-  type: 'User',
-  site_admin: false,
-  name: 'The Octocat',
-  company: '@github',
-  blog: 'https://github.blog',
-  location: 'San Francisco',
-  email: null,
-  hireable: null,
-  bio: null,
-  twitter_username: null,
-  public_repos: 8,
-  public_gists: 8,
-  followers: 4889,
-  following: 9,
-  created_at: '2011-01-25T18:44:36Z',
-  updated_at: '2022-01-24T15:08:43Z',
+let userData
+
+const profileDiv = document.querySelector('.mainContainer')
+
+const makeProfileTemplate = async () => {
+  if (!userData) {
+    await handleSearch()
+  }
+  const template = ` <div class="profileTop">
+    <img
+      src="${userData.avatar_url}"
+      alt="profile"
+      class="profilePic"
+    />
+    <div class="profileMain">
+      <div class="profileMainInfo">
+        <div>
+          <h1 class="name">${userData.name}</h1>
+          <p class="username">@${userData.login}</p>
+        </div>
+        <p class="joinDate">Joined ${new Date(userData.created_at)
+          .toDateString()
+          .slice(4)}</p>
+      </div>
+      <p class="bio">${userData.bio ?? 'This profile has no bio'}</p>
+    </div>
+  </div>
+
+  <div class="profileBottom">
+    <div class="stats">
+      <div>
+        <p class="statTitle">Repos</p>
+        <p class="statInfo">${userData.public_repos}</p>
+      </div>
+
+      <div>
+        <p class="statTitle">Followers</p>
+        <p class="statInfo">${userData.followers}</p>
+      </div>
+
+      <div>
+        <p class="statTitle">Following</p>
+        <p class="statInfo">${userData.following}</p>
+      </div>
+    </div>
+
+    <div class="extraInfos">
+      <div class="flex">
+        <img
+          src="./assets/icon-location.svg"
+          alt="location"
+          class="extraInfoIcon"
+        />
+        <p class="extraInfoTitle">${userData.location ?? 'Not Available'}</p>
+      </div>
+
+      <div class="flex NA">
+        <img
+          src="./assets/icon-twitter.svg"
+          alt="twitter"
+          class="extraInfoIcon NA"
+        />
+        <p class="extraInfoTitle">${
+          userData.twitter_username ?? 'Not Available'
+        }</p>
+      </div>
+
+      <div class="flex">
+        <img
+          src="./assets/icon-website.svg"
+          alt="website"
+          class="extraInfoIcon"
+        />
+        <p class="extraInfoTitle ${!userData.blog.length ? 'NA' : ''}">${
+    userData.blog.length ? userData.blog : 'Not Available'
+  }</p>
+      </div>
+
+      <div class="flex">
+        <img
+          src="./assets/icon-company.svg"
+          alt="company"
+          class="extraInfoIcon"
+        />
+        <p class="extraInfoTitle">${userData.company ?? 'Not Available'}</p>
+      </div>
+    </div>
+  </div>`
+
+  console.log(userData)
+
+  profileDiv.innerHTML = template
 }
 
-const main = async () => {
-  getGithubUser().then(res => console.log(res))
+makeProfileTemplate()
+
+async function handleSearch() {
+  const searchText = document.getElementById('search').value
+  userData = await getGithubUser(searchText)
+  makeProfileTemplate()
 }
 
-// main()
+const searchInput = document.querySelector('.searchButton')
+
+searchInput.addEventListener('click', handleSearch)
