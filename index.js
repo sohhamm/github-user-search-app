@@ -19,14 +19,19 @@ const makeProfileTemplate = async () => {
         <div>
           <h1 class="name">${userData.name}</h1>
           <p class="username">@${userData.login}</p>
+          <p class="joinDate tablet">Joined ${new Date(userData.created_at)
+            .toDateString()
+            .slice(4)}</p>
         </div>
-        <p class="joinDate">Joined ${new Date(userData.created_at)
+        <p class="joinDate desktop">Joined ${new Date(userData.created_at)
           .toDateString()
           .slice(4)}</p>
       </div>
-      <p class="bio">${userData.bio ?? 'This profile has no bio'}</p>
+      <p class="bio desktop">${userData.bio ?? 'This profile has no bio'}</p>
     </div>
   </div>
+
+  <p class="bio tablet">${userData.bio ?? 'This profile has no bio'}</p>
 
   <div class="profileBottom">
     <div class="stats">
@@ -53,7 +58,9 @@ const makeProfileTemplate = async () => {
           alt="location"
           class="extraInfoIcon"
         />
-        <p class="extraInfoTitle">${userData.location ?? 'Not Available'}</p>
+        <p class="extraInfoTitle" style="padding-left:5px;">${
+          userData.location ?? 'Not Available'
+        }</p>
       </div>
 
       <div class="flex NA">
@@ -88,8 +95,6 @@ const makeProfileTemplate = async () => {
       </div>
     </div>
   </div>`
-
-  console.log(userData)
 
   profileDiv.innerHTML = template
 }

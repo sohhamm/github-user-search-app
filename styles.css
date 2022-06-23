@@ -7,7 +7,7 @@
   --light-black: #2b3442;
   --black: #141d2f;
   --white-alt: #fefefe;
-  --br: 12px;
+  --br: 15px;
   --light-bg: #f2f2f2;
   --dark-bg: #1e2a47;
   --font-lg: 26px;
@@ -74,7 +74,7 @@ body {
   top: 13.77%;
   bottom: 13.77%;
   border: none;
-  border-radius: var(--br);
+  border-radius: 10px;
   padding: 0 25px;
   font-size: 16px;
   cursor: pointer;
@@ -110,6 +110,7 @@ body {
 }
 
 .name {
+  font-weight: 700;
   font-size: var(--font-lg);
   color: var(--light-black);
 }
@@ -180,11 +181,145 @@ body {
   display: flex;
 }
 
-@media (max-width: 490px) {
+.flex-c {
+  display: flex;
+  align-items: center;
+}
+
+.theme-text {
+  margin-right: 16px;
+  color: var(--gray);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 2.5px;
+}
+
+.theme-icon {
+  color: var(--gray);
+}
+
+.mobile {
+  display: none;
+}
+
+.tablet {
+  display: none;
+}
+
+.desktop {
+  display: block;
+}
+
+@media (max-width: 790px) and (min-width: 491px) {
+  .tablet {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header,
   .searchContainer,
   .mainContainer {
-    margin-left: 24px;
-    margin-right: 24px;
+    max-width: 573px;
+    width: 100%;
+  }
+
+  .header {
+    margin-top: 140px;
+  }
+
+  .searchContainer,
+  .mainContainer {
+    margin: inherit 0px;
+  }
+
+  .mainContainer {
+    padding: 40px;
+  }
+
+  .profilePic {
+    margin-right: 41px;
+  }
+
+  .profileBottom {
+    width: 100%;
+  }
+
+  .username {
+    margin-top: 2px;
+  }
+
+  .joinDate {
+    margin-top: 4px;
+  }
+
+  .bio {
+    margin-top: 24px;
+  }
+
+  .extraInfoIcon {
+    margin-right: 13px;
+  }
+
+  .extraInfos {
+    column-gap: 65px;
+  }
+}
+
+@media (max-width: 505px) {
+  body {
+    display: block;
+    padding: 0 24px;
+  }
+  .header {
+    margin-top: 31px;
+    width: 100%;
+  }
+
+  .searchContainer,
+  .mainContainer {
+    width: 100%;
+  }
+
+  .searchContainer {
+    margin-bottom: 16px;
+  }
+
+  .searchContainer > input {
+    height: 60px;
+    border-radius: var(--br);
+    padding-left: 45px;
+    font-size: 13px;
+  }
+
+  .searchContainer > input::placeholder {
+    /* font-family: 'Space Mono'; */
+    color: var(--blue-2);
+  }
+
+  .searchContainer > img {
+    width: 20.05px;
+    height: 20px;
+    left: 16px;
+    top: 20px;
+  }
+
+  .searchContainer > button {
+    left: 72.17%;
+    right: 2.14%;
+    top: 10.83%;
+    bottom: 12.5%;
+    padding: 0 16px;
+    font-size: 14px;
   }
 
   .profileBottom {
