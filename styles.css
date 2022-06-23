@@ -5,13 +5,52 @@
   --gray: #697c9a;
   --blue-2: #4b6a9b;
   --light-black: #2b3442;
-  --black: #141d2f;
+  --dark-body-bg: #141d2f;
   --white-alt: #fefefe;
   --br: 15px;
-  --light-bg: #f2f2f2;
+  --light-body-bg: #f2f2f2;
   --dark-bg: #1e2a47;
   --font-lg: 26px;
   --font-fam: 'Space Mono';
+
+  /* light */
+  --brand-name: #222731;
+  --body-bg: #f2f2f2;
+  --search-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --input-placeholder: var(--blue-2);
+  --name: var(--light-black);
+  --join-date: var(--gray);
+  --main-container-bg: white;
+  --main-container-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --name: var(--light-black);
+  --bio: var(--blue-2);
+  --stats: #f6f8ff;
+  --stat-title: var(--blue-2);
+  --stat-info: var(--light-black);
+  --extra-info: var(--blue-2);
+  --extra-info-icon: inherit;
+  --theme-text: var(--gray);
+  --theme-icon: var(--gray);
+}
+
+:root[data-theme='dark'] {
+  --brand-name: white;
+  --body-bg: #141d2f;
+  --search-box-shadow: none;
+  --input-placeholder: white;
+  --name: white;
+  --join-date: white;
+  --main-container-bg: var(--dark-bg);
+  --main-container-box-shadow: none;
+  --name: white;
+  --bio: white;
+  --stats: var(--dark-body-bg);
+  --stat-title: white;
+  --stat-info: white;
+  --extra-info: white;
+  --extra-info-icon: white;
+  --theme-text: white;
+  --theme-icon: white;
 }
 
 * {
@@ -23,7 +62,7 @@
 body {
   max-width: 730px;
   margin: 0 auto;
-  background-color: #f2f2f2;
+  background-color: var(--body-bg);
 }
 
 .header {
@@ -35,8 +74,8 @@ body {
 }
 
 .brandName {
-  color: #222731;
   font-size: var(--font-lg);
+  color: var(--brand-name);
 }
 
 .searchContainer {
@@ -49,14 +88,9 @@ body {
   height: 69px;
   border-radius: var(--br);
   border: none;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding-left: 80px;
   font-size: 18px;
-}
-
-.searchContainer > input::placeholder {
-  /* font-family: 'Space Mono'; */
-  color: var(--blue-2);
+  background-color: var(--main-container-bg);
 }
 
 .searchContainer > img {
@@ -67,7 +101,6 @@ body {
 
 .searchContainer > button {
   position: absolute;
-  /* right: 0; */
   background-color: var(--blue);
   color: white;
   right: 1.37%;
@@ -79,13 +112,20 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
+.searchContainer > input {
+  box-shadow: var(--search-box-shadow);
+}
+
+.searchContainer > input::placeholder {
+  color: var(--input-placeholder);
+}
 
 .mainContainer {
-  background-color: white;
   border-radius: var(--br);
   border: none;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 48px;
+  background-color: var(--main-container-bg);
+  box-shadow: var(--main-container-box-shadow);
 }
 
 .profileTop {
@@ -112,7 +152,7 @@ body {
 .name {
   font-weight: 700;
   font-size: var(--font-lg);
-  color: var(--light-black);
+  color: var(--name);
 }
 
 .username {
@@ -121,16 +161,16 @@ body {
 }
 
 .bio {
-  color: var(--blue-2);
   opacity: 0.75;
   margin-top: 20px;
   line-height: 25px;
+  color: var(--bio);
 }
 
 .joinDate {
-  color: var(--gray);
   font-size: 15px;
   margin-top: 5px;
+  color: var(--join-date);
 }
 
 .profileBottom {
@@ -141,31 +181,31 @@ body {
 }
 
 .stats {
-  background-color: #f6f8ff;
   display: flex;
   padding: 15px 32px 17px 32px;
   border-radius: 10px;
   justify-content: space-evenly;
+  background-color: var(--stats);
 }
 
 .statTitle {
   font-size: 13px;
-  color: var(--blue-2);
   line-height: 16px;
+  color: var(--stat-title);
 }
 
 .statInfo {
   font-size: 22px;
   font-weight: bold;
-  color: var(--light-black);
   line-height: 24px;
+  color: var(--stat-info);
 }
 
 .extraInfos {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  color: var(--blue-2);
+  color: var(--extra-info);
   margin-top: 37px;
   row-gap: 19px;
   column-gap: 80px;
@@ -178,6 +218,7 @@ body {
 
 .extraInfoIcon {
   margin-right: 19px;
+  color: var(--extra-info-icon);
 }
 
 .flex {
@@ -191,15 +232,11 @@ body {
 
 .theme-text {
   margin-right: 16px;
-  color: var(--gray);
   font-weight: 700;
   font-size: 13px;
   line-height: 19px;
   letter-spacing: 2.5px;
-}
-
-.theme-icon {
-  color: var(--gray);
+  color: var(--theme-text);
 }
 
 .mobile {
@@ -212,6 +249,10 @@ body {
 
 .desktop {
   display: block;
+}
+
+.theme-icon {
+  color: var(--theme-icon);
 }
 
 @media (max-width: 790px) and (min-width: 491px) {
@@ -358,7 +399,6 @@ body {
 
   .stats {
     padding: 18.5px 14.5px;
-    /* justify-content: space-between; */
   }
 
   .statTitle {

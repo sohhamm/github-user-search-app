@@ -1,8 +1,52 @@
 import {getGithubUser} from './data.js'
 
 let userData
+let theme = 'light'
 
 const profileDiv = document.querySelector('.mainContainer')
+const themeTextDark = document.querySelector('.flex-c.dark')
+const themeTextLight = document.querySelector('.flex-c.light')
+
+function detectColorScheme() {
+  // GUSA => Github User Search App
+  if (localStorage.getItem('__GUSA__theme')) {
+    if (localStorage.getItem('__GUSA__theme') == 'dark') {
+      theme = 'dark'
+    }
+  } else if (!window.matchMedia) {
+    return false
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    theme = 'dark'
+  }
+
+  if (theme == 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    themeTextLight.style.display = 'none'
+    themeTextDark.style.display = 'flex'
+  } else {
+    themeTextDark.style.display = 'none'
+    themeTextLight.style.display = 'flex'
+  }
+}
+
+detectColorScheme()
+
+themeTextDark.addEventListener('click', () => switchTheme('L'))
+themeTextLight.addEventListener('click', () => switchTheme('D'))
+
+function switchTheme(theme) {
+  if (theme === 'D') {
+    localStorage.setItem('__GUSA__theme', 'dark')
+    document.documentElement.setAttribute('data-theme', 'dark')
+    themeTextLight.style.display = 'none'
+    themeTextDark.style.display = 'flex'
+  } else {
+    localStorage.setItem('__GUSA__theme', 'light')
+    document.documentElement.setAttribute('data-theme', 'light')
+    themeTextDark.style.display = 'none'
+    themeTextLight.style.display = 'flex'
+  }
+}
 
 const makeProfileTemplate = async () => {
   if (!userData) {
