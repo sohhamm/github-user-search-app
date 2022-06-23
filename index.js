@@ -149,9 +149,15 @@ async function handleSearch() {
   const search = document.getElementById('search')
   const searchText = search.value
   userData = await getGithubUser(searchText)
-  makeProfileTemplate()
-  if (!userData) document.querySelector('#noResult').style.display = 'block'
+  console.log(userData)
   if (searchText) search.value = ''
+  if (userData.message === 'Not Found') {
+    const noResult = document.querySelector('.noResult')
+    console.log(noResult, 'x')
+    noResult.style.display = 'block'
+    return
+  }
+  makeProfileTemplate()
 }
 
 const searchButton = document.querySelector('.searchButton')
