@@ -124,6 +124,7 @@ body {
   color: var(--blue-2);
   opacity: 0.75;
   margin-top: 20px;
+  line-height: 25px;
 }
 
 .joinDate {
@@ -143,19 +144,21 @@ body {
   background-color: #f6f8ff;
   display: flex;
   padding: 15px 32px 17px 32px;
-  border-radius: var(--br);
+  border-radius: 10px;
   justify-content: space-evenly;
 }
 
 .statTitle {
   font-size: 13px;
   color: var(--blue-2);
+  line-height: 16px;
 }
 
 .statInfo {
   font-size: 22px;
   font-weight: bold;
   color: var(--light-black);
+  line-height: 24px;
 }
 
 .extraInfos {
@@ -276,6 +279,13 @@ body {
 }
 
 @media (max-width: 505px) {
+  .tablet {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
   body {
     display: block;
     padding: 0 24px;
@@ -294,16 +304,15 @@ body {
     margin-bottom: 16px;
   }
 
+  .mainContainer {
+    padding: 32px 24px 48px 24px;
+  }
+
   .searchContainer > input {
     height: 60px;
     border-radius: var(--br);
     padding-left: 45px;
     font-size: 13px;
-  }
-
-  .searchContainer > input::placeholder {
-    /* font-family: 'Space Mono'; */
-    color: var(--blue-2);
   }
 
   .searchContainer > img {
@@ -322,7 +331,55 @@ body {
     font-size: 14px;
   }
 
+  .profilePic {
+    width: 70px;
+    height: 70px;
+    margin-right: 19px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .username {
+    font-size: 13px;
+    margin-top: 0px;
+  }
+
+  .joinDate {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .bio {
+    margin-top: 33px;
+    font-size: 13px;
+  }
+
+  .stats {
+    padding: 18.5px 14.5px;
+    /* justify-content: space-between; */
+  }
+
+  .statTitle {
+    font-size: 11px;
+  }
+
+  .statInfo {
+    font-size: 16px;
+  }
+
   .profileBottom {
     width: 100%;
+    margin-top: 23px;
+    height: auto;
+  }
+
+  .extraInfos {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin-top: 24px;
+    row-gap: 17px;
+    font-size: 13px;
   }
 }
