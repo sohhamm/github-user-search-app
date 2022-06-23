@@ -146,11 +146,20 @@ const makeProfileTemplate = async () => {
 makeProfileTemplate()
 
 async function handleSearch() {
-  const searchText = document.getElementById('search').value
+  const search = document.getElementById('search')
+  const searchText = search.value
   userData = await getGithubUser(searchText)
   makeProfileTemplate()
+  if (!userData) document.querySelector('#noResult').style.display = 'block'
+  if (searchText) search.value = ''
 }
 
-const searchInput = document.querySelector('.searchButton')
+const searchButton = document.querySelector('.searchButton')
+const searchInput = document.querySelector('#search')
 
-searchInput.addEventListener('click', handleSearch)
+searchButton.addEventListener('click', handleSearch)
+searchInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') {
+    handleSearch(e)
+  }
+})

@@ -255,6 +255,19 @@ body {
   color: var(--theme-icon);
 }
 
+.noResult {
+  position: absolute;
+  height: 22px;
+  left: 68.22%;
+  right: 19.18%;
+  top: calc(50% - 22px / 2 + 0.5px);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  color: #f74646;
+  display: none;
+}
+
 @media (max-width: 790px) and (min-width: 491px) {
   .tablet {
     display: block;
