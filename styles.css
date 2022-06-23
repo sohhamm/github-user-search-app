@@ -65,6 +65,14 @@ body {
   background-color: var(--body-bg);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

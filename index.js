@@ -124,9 +124,11 @@ const makeProfileTemplate = async () => {
           alt="website"
           class="extraInfoIcon"
         />
+        <a href=${userData.blog} target="_blank">
         <p class="extraInfoTitle ${!userData.blog.length ? 'NA' : ''}">${
     userData.blog.length ? userData.blog : 'Not Available'
   }</p>
+        </a>
       </div>
 
       <div class="flex">
@@ -149,11 +151,9 @@ async function handleSearch() {
   const search = document.getElementById('search')
   const searchText = search.value
   userData = await getGithubUser(searchText)
-  console.log(userData)
   if (searchText) search.value = ''
   if (userData.message === 'Not Found') {
     const noResult = document.querySelector('.noResult')
-    console.log(noResult, 'x')
     noResult.style.display = 'block'
     return
   }
