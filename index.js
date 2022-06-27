@@ -107,7 +107,7 @@ const makeProfileTemplate = async () => {
         }</p>
       </div>
 
-      <div class="flex NA">
+      <div class="flex ${userData.twitter_username ? '' : 'NA'}">
         <img
           src="./assets/icon-twitter.svg"
           alt="twitter"
@@ -152,10 +152,12 @@ async function handleSearch() {
   const searchText = search.value
   userData = await getGithubUser(searchText)
   if (searchText) search.value = ''
+  const noResult = document.querySelector('.noResult')
   if (userData.message === 'Not Found') {
-    const noResult = document.querySelector('.noResult')
     noResult.style.display = 'block'
     return
+  } else {
+    noResult.style.display = 'none'
   }
   makeProfileTemplate()
 }
